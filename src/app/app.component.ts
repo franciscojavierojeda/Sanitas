@@ -48,8 +48,6 @@ export class AppComponent implements OnInit {
   }
 
   searchField($event: any) {
-    console.log($event);
-
     this.inputValue = $event.target.value.toLowerCase();
     this.debouncer.next(this.inputValue);
   }
@@ -61,8 +59,6 @@ export class AppComponent implements OnInit {
       const datafiltered = this.constantField.filter((value: Test) => {
         return (value.text.includes(nameToFilter) || value.id.includes(nameToFilter));
       });
-      console.log(datafiltered);
-
       this.tests = datafiltered;
     }
   }
