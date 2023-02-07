@@ -1,0 +1,41 @@
+.test-container {
+  &--title-container {
+    &--principal {
+      margin-top: 2%;
+
+      &--img {
+        width: 5%;
+      }
+    }
+  }
+  &--table {
+    width: 75%;
+    box-shadow: 3px 1px 15px 1px grey;
+    margin: 5% auto;
+    &--search {
+      &--text {
+        width: 20%;
+        margin: 2% 0 0 1%;
+        padding: 10px;
+      }
+    }
+  }
+  &--body {
+    margin: 2% 1% 0 1%;
+    &--title {
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    &--img {
+      width: 5%;
+    }
+  }
+}
+
+.img-test {
+  border-radius: 5px;
+  width: 15%;
+}
+
+.p-datatable-gridlines {
+  border-radius: 10px !important;
+}

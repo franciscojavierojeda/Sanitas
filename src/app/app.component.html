@@ -1,0 +1,45 @@
+<div class="test-container">
+  <div class="test-container--body">
+    <h2 class="test-container--body--title">
+      <img
+        class="test-container--body--img"
+        src="../assets/img/sanitasNoBackground.png"
+        alt=""
+      />
+      Gestión de imágenes
+    </h2>
+    <hr />
+  </div>
+  <div class="test-container--table--search">
+    <input
+      class="test-container--table--search--text"
+      type="text"
+      pInputText
+      (input)="searchField($event)"
+      placeholder="Buscar..."
+    />
+  </div>
+  <div class="test-container--table">
+    <p-table
+      class="p-datatable-gridlines"
+      [value]="tests"
+      [scrollable]="true"
+      scrollHeight="550px"
+      [tableStyle]="{ 'min-width': '70rem' }"
+    >
+      <ng-template pTemplate="caption"> Datatests </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Photo</th>
+          <th>Text</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-test>
+        <tr>
+          <td><img class="img-test" [src]="test.photo" alt="" /></td>
+          <td>{{ test.text }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
