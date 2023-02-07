@@ -26,33 +26,32 @@ export class AppComponent implements OnInit {
     this.fillTests();
   }
   fillTests() {
-
-    for (let i = 0; i < this.ELEMENTS; i++) {
-      this.tests.push({
-        id: i.toString(),
-        photo: this.urlImg,
-        text: this.randomText(this.randomLength)
-      })
-    }
+    /* Para ahorrarnos la creación de un bucle generamos un map con un Array por defecto
+       y le asignamos como id el indice, y al texto una función de generación de textos aleatorios*/
+    this.tests = Array(this.ELEMENTS).map((element, i) => ({
+      id: i.toString(),
+      photo: this.urlImg,
+      text: this.randomText(this.randomLength)
+    }));
     this.constantField = this.tests;
   }
   randomText(textLength: number): string {
     const options = 'abcdefghijklmnñopqrstuvwxyz';
     let result = '';
-
-    for (let i = 0; i < textLength; i++) {
+    for (let i = 0; i < textLength; i++) { // Al ser poco elementos, realizamos un bucle para la inserción de caracteres al azar
       result += options.charAt(Math.floor(Math.random() * options.length));
     }
 
     return result;
   }
 
-  searchField($event: any) {
+  searchField($event: any) { // Cada vez que generamos el evento de escritura en el input, lo enviamos al debouncer para efectuar la búsqueda 
     this.inputValue = $event.target.value.toLowerCase();
     this.debouncer.next(this.inputValue);
   }
 
   dataField(nameToFilter: string) {
+    //Comprobamos el valor del input y en función del valor escrito, vemos si coincide con el id o texto escrito
     if (this.inputValue === '') {
       this.tests = this.constantField
     } else {
