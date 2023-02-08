@@ -26,9 +26,7 @@ export class AppComponent implements OnInit {
     this.fillTests();
   }
   fillTests() {
-    /* Para ahorrarnos la creación de un bucle generamos un map con un Array por defecto
-       y le asignamos como id el indice, y al texto una función de generación de textos aleatorios*/
-
+    /*Generamos un bucle de 4000 iteraciones en el que realizamos la inserción de los datos en el array correspondiente*/
     for (let i = 0; i < this.ELEMENTS; i++) {
 
       this.tests.push({
@@ -42,7 +40,7 @@ export class AppComponent implements OnInit {
   randomText(textLength: number): string {
     const options = 'abcdefghijklmnñopqrstuvwxyz';
     let result = '';
-    for (let i = 0; i < textLength; i++) { // Al ser poco elementos, realizamos un bucle para la inserción de caracteres al azar
+    for (let i = 0; i < textLength; i++) { // Realizamos un bucle para la inserción de caracteres al azar
       result += options.charAt(Math.floor(Math.random() * options.length));
     }
 
