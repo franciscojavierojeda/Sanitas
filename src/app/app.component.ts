@@ -28,11 +28,15 @@ export class AppComponent implements OnInit {
   fillTests() {
     /* Para ahorrarnos la creación de un bucle generamos un map con un Array por defecto
        y le asignamos como id el indice, y al texto una función de generación de textos aleatorios*/
-    this.tests = Array(this.ELEMENTS).map((element, i) => ({
-      id: i.toString(),
-      photo: this.urlImg,
-      text: this.randomText(this.randomLength)
-    }));
+
+    for (let i = 0; i < this.ELEMENTS; i++) {
+
+      this.tests.push({
+        id: i.toString(),
+        photo: this.urlImg,
+        text: this.randomText(this.randomLength)
+      });
+    }
     this.constantField = this.tests;
   }
   randomText(textLength: number): string {
