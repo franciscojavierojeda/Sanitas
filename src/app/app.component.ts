@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
+import { AppDataControls } from './enum/app-data.controls';
 import { Test } from './interfaces/test.interface';
 
 @Component({
@@ -8,25 +9,25 @@ import { Test } from './interfaces/test.interface';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'test_app';
   tests: Test[] = [];
-  urlImg: string = 'https://picsum.photos/id/1/500/500';
-  ELEMENTS: number = 4000;
-  randomLength: number = 20;
+  urlImg: string = AppDataControls.IMAGEN;
+  ELEMENTS: number = AppDataControls.ELEMENTS;
+  randomLength: number = AppDataControls.RANDOMLENGTH;
   inputValue: string = '';
   constantField: Test[] = []
   debouncer: Subject<string> = new Subject();
 
   constructor() {
-    this.debouncer.pipe(debounceTime(500)).subscribe((nameToFilter: string) => {
+    this.debouncer.pipe(debounceTime(300)).subscribe((nameToFilter: string) => {
       this.dataField(nameToFilter);
     });
   }
   ngOnInit(): void {
     this.fillTests();
   }
+  /*Generamos un bucle de 4000 iteraciones en el que realizamos la inserción 
+  de los datos en el array correspondiente*/
   fillTests() {
-    /*Generamos un bucle de 4000 iteraciones en el que realizamos la inserción de los datos en el array correspondiente*/
     for (let i = 0; i < this.ELEMENTS; i++) {
 
       this.tests.push({
@@ -37,23 +38,25 @@ export class AppComponent implements OnInit {
     }
     this.constantField = this.tests;
   }
+
+  /* Realizamos un bucle para la inserción de caracteres al azar*/
   randomText(textLength: number): string {
-    const options = 'abcdefghijklmnñopqrstuvwxyz';
+    const options = AppDataControls.APLHABET;
     let result = '';
-    for (let i = 0; i < textLength; i++) { // Realizamos un bucle para la inserción de caracteres al azar
+    for (let i = 0; i < textLength; i++) {
       result += options.charAt(Math.floor(Math.random() * options.length));
     }
-
     return result;
   }
 
-  searchField($event: any) { // Cada vez que generamos el evento de escritura en el input, lo enviamos al debouncer para efectuar la búsqueda 
+  /* Cada vez que generamos el evento de escritura en el input, lo enviamos al debouncer para efectuar la búsqueda */
+  searchField($event: any) {
     this.inputValue = $event.target.value.toLowerCase();
     this.debouncer.next(this.inputValue);
   }
 
+  /*Comprobamos el valor del input y en función del valor escrito, vemos si coincide con el id o texto escrito*/
   dataField(nameToFilter: string) {
-    //Comprobamos el valor del input y en función del valor escrito, vemos si coincide con el id o texto escrito
     if (this.inputValue === '') {
       this.tests = this.constantField
     } else {

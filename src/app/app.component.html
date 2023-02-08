@@ -31,12 +31,14 @@
       <ng-template pTemplate="caption"> Datatests </ng-template>
       <ng-template pTemplate="header">
         <tr>
+          <th>ID</th>
           <th>Photo</th>
           <th>Text</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-test>
         <tr>
+          <td>{{ test.id }}</td>
           <td>
             <img class="img-test" [src]="test.photo" alt="" />
           </td>
